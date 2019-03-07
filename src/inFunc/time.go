@@ -15,6 +15,7 @@ func main() {
 	fmt.Println(tf)
 	// toTime 格式化    用法二： 使用固定的字符串进行格式化获得time 对象
 	TestXYZ()
+	addDateTest()
 }
 
 const TimeFormat = "2006-01-02 15:04:05"
@@ -23,4 +24,14 @@ func TestXYZ() {
 
 	t, _ := time.Parse(TimeFormat, "2013-08-11 11:18:46")
 	fmt.Println(t) // 2013-08-11 11:18:46 +0000 UTC
+}
+
+// addDate 返回与将给定的年数，月数和天数添加到t相对应的时间
+// 例如，应用于2011年1月1日的AddDate（-1,2,3）将于2010年3月4日返回。
+
+func addDateTest() {
+	start := time.Date(2009, 1, 1, 0, 0, 0, 0, time.UTC)
+	fmt.Println("before is ", start)
+	after := start.AddDate(0,-1,0)
+	fmt.Println("after is ",after)
 }
