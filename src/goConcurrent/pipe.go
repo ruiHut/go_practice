@@ -3,6 +3,7 @@ package main
 // 管道 只能运行一次
 
 import (
+	"bytes"
 	"fmt"
 	"os/exec"
 )
@@ -29,4 +30,23 @@ func main() {
 	} else {
 		fmt.Println("cant not open it")
 	}
+
+	// ps aux | grep go
+
+	cmd1 := exec.Command("ps", "aux")
+	cmd2 := exec.Command("grep", "apipe")
+
+	var outputBuf1 bytes.Buffer
+	cmd1.Stdout = &outputBuf1
+	if err := cmd1.Wait(); err != nil { //	cmd1 的wait方法的调用会一直阻塞， 直到cmd1完全运行结束
+		fmt.Println("Error: the first command can not be startup %s\n", err)
+		return
+	}
+
+	if err := cmd2.Wait(); err != nil {
+		fmt.Println("Error: couldn wait for the second command: %s\n", err)
+		return
+	}
+	fmt.Println(outputBuf1.Bytes())
+
 }
