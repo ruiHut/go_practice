@@ -37,6 +37,13 @@ func DuplicateNumberByHashMap(array []int32) int32 {
 	return -1
 }
 
+// test
+func CompareTest(array []int) int {
+	if len(array) <= 1 {
+		return -1
+	}
+}
+
 // 拿第i个数字和当前大小的m个数字比较
 func CompareWithinGroups(array []int) int {
 	if len(array) <= 1 {
