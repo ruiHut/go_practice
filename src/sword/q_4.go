@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 //二维数组中的查找
 
@@ -11,7 +13,7 @@ func main(){
  		{1,2},
 		{2,3},
 	}
-	fmt.Println(Find(array, 2, 2, 2))
+	fmt.Println(FindByself(array, 2, 2, 2))
 }
 
 func Find(array [2][2]int, rows int, columns int, num int)  bool {
@@ -33,4 +35,30 @@ func Find(array [2][2]int, rows int, columns int, num int)  bool {
 	}
 
 	return	res
+}
+
+func FindByself(array [2][2]int, rows int , columns int, num int) bool {
+	res := false
+
+	if rows>0 && columns>0 {
+		if num < array[0][0] || num > array[rows-1][columns-1] {
+			return false
+		}
+
+		row := 0
+		column := columns -1
+
+		for row < rows && column >= 0 {
+			if array[row][column] == num {
+				res = true
+				return res
+			}
+			if array[row][column] > num {
+				column--
+			}
+				rows++
+		}
+	}
+
+	return res
 }
